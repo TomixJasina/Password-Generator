@@ -130,7 +130,42 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
+  let userInput = getPasswordOptions();
+ 
+  if(userInput===false) {
+    return "";
+  }
+  
+  let passArray = [];
+  let result = "";
 
+  if (userInput[1]) {
+    passArray.push(specialCharacters);
+    result += getRandom(specialCharacters);
+  }
+
+  if(userInput[2]){
+    passArray.push(lowerCasedCharacters);
+    result += getRandom(lowerCasedCharacters);
+  }
+
+  if(userInput[3]){
+    passArray.push(upperCasedCharacters);
+    result += getRandom(upperCasedCharacters);
+  }
+
+  if(userInput[4]){
+    passArray.push(numericCharacters);
+    result += getRandom(numericCharacters);
+  }
+
+  for(i = passArray.length; i < userInput[0]; i++){
+    let randomPassArray = getRandom(passArray);
+    result += getRandom(randomPassArray);
+  }
+  
+  return result;
+  
 }
 
 // Get references to the #generate element
