@@ -90,8 +90,34 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+    let passLenght =  +prompt('How many characters do you want in your password:');
+  
+    if(typeof passLenght === 'number' && passLenght >= 8 & passLenght <= 128){
 
-}
+      alert('Password will be: ' + passLenght + ' characters long.');
+
+      let specialChar = confirm('Do you want to use special characters in your password?');
+
+      let lowerCased = confirm('Do you want to use lower cased characters in your password?');
+
+      let upperCased = confirm('Do you want to use upper cases characters in your password?');
+
+      let numeric = confirm('Do you want to use numeric characters in your password?');
+
+      let userChoices = [passLenght, specialChar, lowerCased, upperCased, numeric];
+
+    if (userChoices[1]=== false && userChoices[2]=== false && userChoices[3]=== false && userChoices[4]=== false){
+      alert('Choose at least one kind of characters.');
+      return false;
+    }
+      return  userChoices;
+  }
+    else {
+      alert('Please use number between 8 and 128.');
+      return false;
+    }
+
+  }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
